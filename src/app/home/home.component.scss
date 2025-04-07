@@ -3,3 +3,11 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
+.header-image {
+  width: 90vw;
+  height: 70vh;
+  padding: 1rem;
+  object-fit: cover;
+  display: block;
+}

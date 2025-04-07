@@ -1,2 +1,6 @@
 <app-navbar [title]="title"></app-navbar>
 <router-outlet />
+<div class="toast" *ngFor="let toast of toastService.toasts; let i = index">
+    {{ toast }}
+    <button (click)="removeToast(i)">X</button>
+</div>

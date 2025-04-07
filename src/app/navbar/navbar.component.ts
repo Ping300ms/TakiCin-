@@ -14,4 +14,9 @@ import {RouterLink} from "@angular/router";
 })
 export class NavbarComponent {
   @Input({ required: true }) title! : string
+  protected readonly localStorage = localStorage;
+
+  logout() : void {
+    localStorage.clear();
+  }
 }

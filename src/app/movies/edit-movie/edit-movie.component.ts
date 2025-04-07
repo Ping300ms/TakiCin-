@@ -29,6 +29,7 @@ export class EditMovieComponent {
     rate: undefined,
     image: undefined
   }
+  previousDate: string = "";
 
   constructor(private activatedRoute: ActivatedRoute) {
     this.id = this.activatedRoute.snapshot.params['id'];
@@ -44,13 +45,24 @@ export class EditMovieComponent {
     this.newMovie.director = this.movie.director;
     this.newMovie.releaseDate = this.movie.releaseDate;
     this.newMovie.synopsis = this.movie.synopsis;
+    this.previousDate = this.formatedDate(this.movie.releaseDate);
   }
 
   submit():void {
-    if (this.movie === null) return;
-    if (this.movie.title === '' || this.movie.director === '' || this.movie.synopsis === '') return;
+    if (this.newMovie === null) return;
+    if (this.newMovie.title === '' || this.newMovie.director === '' || this.newMovie.synopsis === '' || this.previousDate === '') return
+    console.log(this.previousDate);
+    this.newMovie.releaseDate = new Date(this.previousDate);
     console.log("film édité");
     this.moviesService.editMovie(this.newMovie);
     this.router.navigate(['/movies']);
+  }
+
+  formatedDate = (date : Date) => {
+    let day : string = date.getDate().toString();
+    if (day.length === 1) day = "0" + day;
+    let month : string = date.getMonth() + 1 + "";
+    if (month.length === 1) month = "0" + month;
+    return date.getFullYear() + "-" + month + "-" + day;
   }
 }

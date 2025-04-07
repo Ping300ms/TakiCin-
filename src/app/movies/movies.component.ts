@@ -29,7 +29,8 @@ export class MoviesComponent{
 
   deleteMovie(movie:Movie): void {
     this.moviesService.deleteMovie(movie);
-    this.router.navigate(["/movies"]);
+    this.router.navigate(["/movies"], {onSameUrlNavigation: "reload"});
+    console.log('movie deleted')
   }
 
   exportCSS() {

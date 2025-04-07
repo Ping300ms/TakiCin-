@@ -1,4 +1,12 @@
-<p>{{localStorage.getItem('username')}}</p>
-<p>{{localStorage.getItem('lastname')}}</p>
-<p>{{localStorage.getItem('age')}}</p>
-<p>{{localStorage.getItem('email')}}</p>
+<div class="profile-container">
+    <h1>Bienvenue sur votre profil</h1>
+
+    <div class="profile-info">
+        <p><strong>Nom d'utilisateur:</strong> {{ localStorage.getItem('username') }}</p>
+        <p><strong>Nom:</strong> {{ localStorage.getItem('lastname') }}</p>
+        <p><strong>Âge:</strong> {{ localStorage.getItem('age') }}</p>
+        <p><strong>Email:</strong> {{ localStorage.getItem('email') }}</p>
+    </div>
+
+    <button class="btn btn-danger deleteButton" (click)="logout()">Se déconnecter</button>
+</div>

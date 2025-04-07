@@ -5,7 +5,7 @@
     @if (localStorage.getItem('logged') === 'true')
     {
         <a class="nav-item nav-link" routerLink="/account">Profil</a>
-        <a class="nav-item nav-link" (click)="logout()">Déconnexion</a>
+        <button class="nav-item nav-link" (click)="logout()">Déconnexion</button>
     } @else {
         <a class="nav-item nav-link" routerLink="/login">Inscription</a>
     }

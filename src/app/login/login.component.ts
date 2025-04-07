@@ -1,6 +1,7 @@
 import {Component, inject} from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import {Router} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,8 @@ export class LoginComponent {
   lastname: string = '';
   age: string = '';
   email: string = '';
+  constructor(protected toastr: ToastrService) {
+  }
 
   onSubmit() {
     console.log('Username:', this.firstname);
@@ -30,6 +33,8 @@ export class LoginComponent {
     localStorage.setItem('email', this.email);
     localStorage.setItem('logged','true');
 
-    this.router.navigate(['/account']);
+    this.router.navigate(['/account']).then(() => {
+      this.toastr.success('Vous êtes désormais connecté !');
+    });
   }
 }

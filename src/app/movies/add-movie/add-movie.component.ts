@@ -6,6 +6,7 @@ import {MoviesService} from "../../services/movies.service";
 import {ToastComponent} from "../../toast/toast.component";
 import {ToastService} from "../../services/toast.service";
 import {ToastrService} from "ngx-toastr";
+//import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-add-movie',
@@ -35,13 +36,13 @@ export class AddMovieComponent {
 
   addMovie():void {
     if (this.movie.title === '' || this.movie.director === '' || this.movie.synopsis === '') {
-      this.toastr.error('Erreur', 'Remplissez tous les champs avant de quitter');
+      this.toastr.error('Remplissez tous les champs avant de quitter', 'Erreur');
       return;
     }
     console.log("film ajouté");
     this.moviesService.addMovie(this.movie);
     this.router.navigate(['/movies']).then(() => {
-      this.toastr.success('Succès', 'Film ajouté');
+      this.toastr.success('Film ajouté', 'Succès');
     });
   }
 }

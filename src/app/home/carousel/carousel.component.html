@@ -1,0 +1,21 @@
+<div class="carousel-container">
+    <button
+            class="carousel-arrow prev-arrow"
+            (click)="prevSlide()"
+            [disabled]="currentSlideIndex === 0">
+        &lt;
+    </button>
+
+    <div class="carousel-slide">
+        @for (movie of slides[currentSlideIndex]; track movie.id) {
+            <app-movie [movie]="movie"></app-movie>
+        }
+    </div>
+
+    <button
+            class="carousel-arrow next-arrow"
+            (click)="nextSlide()"
+            [disabled]="currentSlideIndex === slides.length - 1">
+        &gt;
+    </button>
+</div>

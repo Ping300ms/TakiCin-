@@ -1,0 +1,37 @@
+<p>{{movie?.title}}</p>
+<p>{{movie?.director}}</p>
+<p>{{movie?.releaseDate}}</p>
+<p>{{movie?.synopsis}}</p>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="w-100 d-flex justify-content-end mt-1">
+        <a class="btn btn-secondary" routerLink="/movies">Annuler</a>
+      </div>
+      <h2>Modifier un film</h2>
+      <!----><!---->
+      <form novalidate="" class="ng-untouched ng-pristine ng-valid">
+        <div class="form-group">
+          <label for="title"> Titre </label>
+          <input type="text" id="title" name="title" value="{{movie?.title}}" class="form-control ng-untouched ng-pristine ng-valid" [(ngModel)]="newMovie.title">
+        </div>
+        <div class="form-group">
+          <label for="director"> Réalisateur </label>
+          <input type="text" id="director" name="director" value="{{movie?.director}}" class="form-control ng-untouched ng-pristine ng-valid" [(ngModel)]="newMovie.director">
+        </div>
+        <div class="form-group">
+          <label for="releaseDate"> Date de Sortie </label>
+          <input type="date" id="releaseDate" name="releaseDate" value="{{movie?.releaseDate}}" class="form-control ng-untouched ng-pristine ng-valid" [(ngModel)]="newMovie.releaseDate">
+        </div>
+        <div class="form-group">
+          <label for="synopsis"> Synopsis </label>
+          <input type="text" id="synopsis" name="synopsis" value="{{movie?.synopsis}}" class="form-control ng-untouched ng-pristine ng-valid" [(ngModel)]="newMovie.synopsis">
+        </div>
+        <button type="submit" id="submit" class="btn btn-warning" (click)="submit()">Appliquer</button>
+        <!----><!---->
+      </form>
+    </div>
+  </div>
+</div>

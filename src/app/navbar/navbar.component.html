@@ -1,6 +1,12 @@
 <nav class="navbar navbar-expand-lg navbar-light d-flex align-items-center">
-  <a class="navbar-brand">{{ title | titlecase }}</a>
-  <a class="nav-item nav-link" routerLink="">Accueil</a>
-  <a class="nav-item nav-link ms-3" routerLink="movies">Gestion de films</a>
-    <a class="nav-item nav-link" routerLink="/login">Inscription</a>
+    <a class="navbar-brand">{{ title | titlecase }}</a>
+    <a class="nav-item nav-link" routerLink="">Accueil</a>
+    <a class="nav-item nav-link ms-3" routerLink="movies">Gestion de films</a>
+    @if (localStorage.getItem('logged') === 'true')
+    {
+        <a class="nav-item nav-link" routerLink="/account">Profil</a>
+        <a class="nav-item nav-link" (click)="logout()">Déconnexion</a>
+    } @else {
+        <a class="nav-item nav-link" routerLink="/login">Inscription</a>
+    }
 </nav>

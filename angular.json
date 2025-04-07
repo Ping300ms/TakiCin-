@@ -52,6 +52,9 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/font-awesome/scss/fontawesome.scss",
+              "node_modules/font-awesome/scss/brands.scss",
+              "node_modules/font-awesome/scss/regular.scss",
               "src/styles.scss"
             ],
             "scripts": []
@@ -119,5 +122,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

@@ -25,7 +25,7 @@ export class EditMovieComponent {
   private readonly router : Router = inject(Router);
   newMovie : Movie | undefined;
 
-  constructor(private activatedRoute: ActivatedRoute) {
+  constructor(private activatedRoute: ActivatedRoute, private toastr: ToastrService) {
     this.id = this.activatedRoute.snapshot.params['id'];
     this.movie = this.moviesService.getMovie(this.id);
     this.movie.subscribe((movie) => {
@@ -41,8 +41,6 @@ export class EditMovieComponent {
     })
   }
 
-  constructor(private toastr: ToastrService) {
-  }
 
   submit():void {
     if (this.newMovie === undefined || this.newMovie.title === '' || this.newMovie.director === '' || this.newMovie.synopsis === '' || this.newMovie.releaseDate === undefined) {

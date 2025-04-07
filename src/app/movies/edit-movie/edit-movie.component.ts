@@ -3,6 +3,8 @@ import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {Movie} from "../../models/movie";
 import {MoviesService} from "../../services/movies.service";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {Observable} from "rxjs";
+import {Task} from "zone.js/lib/zone-impl";
 
 @Component({
   selector: 'app-edit-movie',
@@ -17,42 +19,29 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 })
 export class EditMovieComponent {
   private readonly id;
-  movie : Movie | null = null;
+  movie : Observable<Movie>;
   private readonly moviesService : MoviesService = inject(MoviesService);
   private readonly router : Router = inject(Router);
-  newMovie: Movie = {
-    title: '',
-    director: '',
-    releaseDate: new Date(),
-    synopsis: '',
-    id: undefined,
-    rate: undefined,
-    image: undefined
-  }
-  previousDate: string = "";
+  newMovie : Movie | undefined;
 
   constructor(private activatedRoute: ActivatedRoute) {
     this.id = this.activatedRoute.snapshot.params['id'];
-  }
-
-  ngOnInit() {
     this.movie = this.moviesService.getMovie(this.id);
-    console.log(this.id)
-    console.log(this.moviesService.getMovie(this.id))
-    if (this.movie === null) return;
-    this.newMovie.id = this.movie.id;
-    this.newMovie.title = this.movie.title;
-    this.newMovie.director = this.movie.director;
-    this.newMovie.releaseDate = this.movie.releaseDate;
-    this.newMovie.synopsis = this.movie.synopsis;
-    this.previousDate = this.formatedDate(this.movie.releaseDate);
+    this.movie.subscribe((movie) => {
+      this.newMovie = {
+        id: movie.id,
+        director: movie.director,
+        image: movie.image,
+        rate: movie.rate,
+        releaseDate: movie.releaseDate,
+        synopsis: movie.synopsis,
+        title: movie.title
+      }
+    })
   }
 
   submit():void {
-    if (this.newMovie === null) return;
-    if (this.newMovie.title === '' || this.newMovie.director === '' || this.newMovie.synopsis === '' || this.previousDate === '') return
-    console.log(this.previousDate);
-    this.newMovie.releaseDate = new Date(this.previousDate);
+    if (this.newMovie === undefined || this.newMovie.title === '' || this.newMovie.director === '' || this.newMovie.synopsis === '' || this.newMovie.releaseDate === undefined) return;
     console.log("film édité");
     this.moviesService.editMovie(this.newMovie);
     this.router.navigate(['/movies']);

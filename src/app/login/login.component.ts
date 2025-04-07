@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {FormsModule} from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -11,18 +12,24 @@ import {FormsModule} from "@angular/forms";
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
+  private readonly router : Router = inject(Router);
   firstname: string = '';
   lastname: string = '';
   age: string = '';
   email: string = '';
 
   onSubmit() {
-    // Implement your login logic here
     console.log('Username:', this.firstname);
     console.log('Password:', this.lastname);
     console.log('Password:', this.age);
     console.log('Password:', this.email);
 
-    // Add authentication logic and navigate to the next page upon successful login
+    localStorage.setItem('username', this.firstname);
+    localStorage.setItem('lastname', this.lastname);
+    localStorage.setItem('age', this.age);
+    localStorage.setItem('email', this.email);
+    localStorage.setItem('logged','true');
+
+    this.router.navigate(['/account']);
   }
 }

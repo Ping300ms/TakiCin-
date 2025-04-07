@@ -5,6 +5,7 @@ import {FormsModule} from "@angular/forms";
 import {MoviesService} from "../../services/movies.service";
 import {ToastComponent} from "../../toast/toast.component";
 import {ToastService} from "../../services/toast.service";
+import {ToastrService} from "ngx-toastr";
 //import {ToastrService} from "ngx-toastr";
 
 @Component({
@@ -31,17 +32,17 @@ export class AddMovieComponent {
     image: undefined
   }
   show: boolean = false;
-  //constructor(private toastr: ToastrService) {}
+  constructor(private toastr: ToastrService) {}
 
   addMovie():void {
     if (this.movie.title === '' || this.movie.director === '' || this.movie.synopsis === '') {
-    //  this.toastr.error('Erreur', 'Remplissez tous les champs avant de quitter');
+      this.toastr.error('Remplissez tous les champs avant de quitter', 'Erreur');
       return;
     }
     console.log("film ajouté");
     this.moviesService.addMovie(this.movie);
-    /*this.router.navigate(['/movies']).then(() => {
-      this.toastr.success('Succès', 'Film ajouté');
-    });*/
+    this.router.navigate(['/movies']).then(() => {
+      this.toastr.success('Film ajouté', 'Succès');
+    });
   }
 }

@@ -1,0 +1,19 @@
+<div>
+    <h1>Passioné(e) de cinéma ?</h1>
+    <h1>Inscris-toi !</h1>
+    <form (ngSubmit)="onSubmit()">
+        <label for="firstname">Prénom:</label>
+        <input type="text" id="firstname" [(ngModel)]="firstname" name="firstname" required>
+
+        <label for="lastname">Nom de famille:</label>
+        <input type="text" id="lastname" [(ngModel)]="lastname" name="lastname" required>
+
+        <label for="age">Age:</label>
+        <input type="text" id="age" [(ngModel)]="age" name="age" required>
+
+        <label for="email">Email</label>
+        <input type="text" id="email" [(ngModel)]="email" name="email" required>
+
+        <button type="submit">M'inscrire</button>
+    </form>
+</div>

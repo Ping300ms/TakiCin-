@@ -9,12 +9,13 @@ import {MovieComponent} from "./movie/movie.component";
   selector: 'app-home',
   standalone: true,
   imports: [
-    MovieComponent
+    MovieComponent,
+    AsyncPipe
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
   private readonly moviesService = inject(MoviesService);
-  movies: Movie[] = this.moviesService.getMovies();
+  movies: Observable<Movie[]> = this.moviesService.getMovies();
 }

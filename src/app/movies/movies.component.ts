@@ -29,6 +29,7 @@ export class MoviesComponent{
 
   deleteMovie(movie:Movie): void {
     this.moviesService.deleteMovie(movie);
+    this.router.navigate(["/movies"]);
   }
 
   exportCSS() {

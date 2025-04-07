@@ -55,6 +55,7 @@
               "node_modules/font-awesome/scss/fontawesome.scss",
               "node_modules/font-awesome/scss/brands.scss",
               "node_modules/font-awesome/scss/regular.scss",
+              "node_modules/ngx-toastr/toastr.css",
               "src/styles.scss"
             ],
             "scripts": []

@@ -55,7 +55,8 @@
               "src/assets/icons/fontawesome.scss",
               "src/assets/icons/brands.scss",
               "node_modules/ngx-toastr/toastr.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/assets/icons/regular.scss"
             ],
             "scripts": []
           },

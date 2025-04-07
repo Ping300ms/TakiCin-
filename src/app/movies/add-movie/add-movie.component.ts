@@ -27,9 +27,9 @@ export class AddMovieComponent {
     director: '',
     releaseDate: new Date(),
     synopsis: '',
-    id: undefined,
-    rate: undefined,
-    image: undefined
+    id: 0,
+    rate: 0,
+    image: ''
   }
   show: boolean = false;
   constructor(private toastr: ToastrService) {}

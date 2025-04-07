@@ -20,14 +20,43 @@ import {Observable} from "rxjs";
 export class MoviesComponent{
   private readonly moviesService = inject(MoviesService);
   private readonly router = inject(Router);
-  constructor(protected toastService: ToastService) {}
-  movies: Observable<Movie[]> = this.moviesService.getMovies();
+  movies: Observable<Movie[]>;
+  movieList: Movie[] | undefined;
+  constructor() {
+    this.movies = this.moviesService.getMovies();
+    this.movies.subscribe((movies) => this.movieList = movies);
+  }
 
   deleteMovie(movie:Movie): void {
     this.moviesService.deleteMovie(movie);
   }
 
-  removeToast(index:number){
-    this.toastService.remove(index);
+  exportCSS() {
+    if (!this.movieList) {
+      console.log('no movie list');
+      return;
+    }
+    const headers = ['ID', 'Title', 'Release Date', 'Director', 'Rating', 'Synopsis', 'Image'];
+    const csvRows = [];
+    csvRows.push(headers.join(','));
+    this.movieList.forEach(movie => {
+      let date : string = movie.releaseDate.toString();
+      const row = [
+        movie.id || '',
+        `"${movie.title}"`,
+        date,
+        `"${movie.director}"`,
+        movie.rate || '',
+        `"${movie.synopsis}"`,
+        movie.image || ''
+      ];
+      csvRows.push(row.join(','));
+    });
+    const csvString = csvRows.join('\n');
+    const blob = new Blob([csvString], { type: 'text/csv' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'movies.csv';
+    link.click();
   }
 }

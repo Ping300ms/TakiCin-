@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import {RouterLink} from "@angular/router";
+import {Component, inject} from '@angular/core';
+import {Router, RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-account',
@@ -13,4 +13,10 @@ import {RouterLink} from "@angular/router";
 export class AccountComponent {
 
   protected readonly localStorage = localStorage;
+  private readonly router : Router = inject(Router);
+
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['/login']);
+  }
 }

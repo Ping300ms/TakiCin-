@@ -1,8 +1,4 @@
 <div class="container-fluid d-flex align-items-center mt-3" id="header">
-    <div class="toast" *ngFor="let toast of toastService.toasts; let i = index">
-        {{ toast }}
-        <button (click)="removeToast(i)">X</button>
-    </div>
   <h1>Les films</h1>
   <div id="buttons">
     <a class="btn btn-outline-warning ml-3" routerLink="/movies/add">Nouveau film</a>

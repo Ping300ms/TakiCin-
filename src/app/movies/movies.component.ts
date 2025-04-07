@@ -1,6 +1,5 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {AsyncPipe, DatePipe} from "@angular/common";
-import {NgForOf} from "@angular/common";
 import {MoviesService} from "../services/movies.service";
 import {Movie} from "../models/movie";
 import {Router, RouterLink} from "@angular/router";

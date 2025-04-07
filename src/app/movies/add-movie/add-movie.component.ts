@@ -36,13 +36,13 @@ export class AddMovieComponent {
 
   addMovie():void {
     if (this.movie.title === '' || this.movie.director === '' || this.movie.synopsis === '') {
-      this.toastr.error('Remplissez tous les champs avant de quitter', 'Erreur');
+      this.toastr.error('Remplissez tous les champs avant de quitter.');
       return;
     }
     console.log("film ajouté");
     this.moviesService.addMovie(this.movie);
     this.router.navigate(['/movies']).then(() => {
-      this.toastr.success('Film ajouté', 'Succès');
+      this.toastr.success('Film ajouté !');
     });
   }
 }

@@ -5,6 +5,7 @@ import {MoviesService} from "../../services/movies.service";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {Observable} from "rxjs";
 import {Task} from "zone.js/lib/zone-impl";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-edit-movie',
@@ -40,11 +41,19 @@ export class EditMovieComponent {
     })
   }
 
+  constructor(private toastr: ToastrService) {
+  }
+
   submit():void {
-    if (this.newMovie === undefined || this.newMovie.title === '' || this.newMovie.director === '' || this.newMovie.synopsis === '' || this.newMovie.releaseDate === undefined) return;
+    if (this.newMovie === undefined || this.newMovie.title === '' || this.newMovie.director === '' || this.newMovie.synopsis === '' || this.newMovie.releaseDate === undefined) {
+      this.toastr.error('Remplissez tous les champs avant de quitter.');
+      return;
+    };
     console.log("film édité");
     this.moviesService.editMovie(this.newMovie);
-    this.router.navigate(['/movies']);
+    this.router.navigate(['/movies']).then(() => {
+      this.toastr.success('Film mis à jour!');
+    });
   }
 
   formatedDate = (date : Date) => {
